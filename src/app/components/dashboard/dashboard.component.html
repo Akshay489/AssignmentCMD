@@ -1,0 +1,118 @@
+<div class="page">
+
+<div>
+  <div><h1 style="width:50%; ">ORANGANIZATION DASHBOARD
+  </h1>
+  <span style="float:right ;margin-top: -50px; margin-right: 10px;" ><a href="#" (click)="logout()">Logout</a> 
+  </span>
+</div>
+  <p>Account List</p>
+  <input type="number" id="itemCount" placeholder="Enter number of items" min="1" max="5" value="2">
+  <button (click)="generateItemsBasedOnInput()">GO</button>
+</div>
+<div style="float: right;"><span style="font-size: 14px; margin-top: 5px;">Detailed view </span>
+  <label class="switch"> 
+    <input type="checkbox" (click)="toggleDisplay()">
+    <span class="slider round"></span>
+  </label>
+  <div>
+
+</div>
+</div>
+<br/>
+<br/>
+
+<div>
+  @if(!displayType){
+  <table class="table1">
+    <thead>
+      <tr>
+        <th>Account</th>
+        <th>Account Lead</th>
+        <th>Account Manager</th>
+        <th>Active Date</th>
+        <th>Invoice model</th>
+        <th>FTE</th>
+        <th>Daily Inflow</th>
+        <th>Avg Monthly charges</th>
+        <th>MTD Charges</th>
+        <th>Avg Monthly Payment</th>
+        <th>MTD Payment</th>
+        <th>Total AR</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(item of items; track item.accountNo){
+      <tr>
+        <td>{{item.accountNo}}</td>
+        <td>{{item.accountLead}}</td>
+        <td>{{item.accountManger}}</td>
+        <td>{{item.activeDate}}</td>
+        <td>{{item.invoiceModel}}</td>
+        <td>{{item.FTE}}</td>
+        <td>{{item.dailyInflow}}</td>
+        <td>{{item.avrgMonthlyCharges}}</td>
+        <td>{{item.mtdCharges}}</td>
+        <td>{{item.avrgMonthlyPayment}}</td>
+        <td>{{item.mtdPayment}}</td>
+        <td>{{item.totalAr}}</td>
+      </tr>
+    }
+    </tbody>
+  </table>
+}@else{
+
+  @for(account of accounts; track account.id){
+  <table class="cardtable">
+    <tr>
+      <td style="background-color: #f2f2f2;" class="cardtd">
+        <div class="card">
+          <h3 class="heading">{{ account.account.name }}</h3>
+          <p><span class="label">Account Lead :</span><span class="value">{{ account.account.lead }}</span></p>
+          <p><span class="label">Account Manger :</span><span class="value">{{ account.account.manager }}</span></p>
+          <p><span class="label">Invoice Type :</span><span class="value">{{ account.account.invoiceType }}</span></p>
+          <p><span class="label">Active Date :</span><span class="value">{{ account.account.activedDate }}</span></p>
+        </div>
+      </td>
+      <td style="background-color: #a8f0bd;" class="cardtd">
+        <div class="card">
+          <h3 class="heading">Daily In Flow</h3>
+          <h3 class="heading">{{ account.dailyInflow.noOfPostings }}</h3>
+          <p style="text-align: center;">NO OF POSTINGS</p>
+          <h3  class="heading">{{ account.dailyInflow.noOfDeposits }}</h3>
+          <p style="text-align: center;">NO OF DEPOSITS</p>
+          <h3 class="heading">{{ account.dailyInflow.noOfPatients }}</h3>
+          <p style="text-align: center;">NO OF PATIENTS</p>
+        </div>
+      </td>     
+       <td style="background-color: #9fc7ec;" class="cardtd">
+        <div class="card">
+          <h3 class="heading"><span class="label">FTE</span><span class="value">{{ account.fte.value }}</span></h3>
+          <p><span class="label">Demographics :</span><span class="value">{{ account.fte.demographics }}</span></p>
+          <p><span class="label">Eligibility verification :</span><span class="value">{{ account.fte.eligibilityVerification }}</span></p>
+          <p><span class="label">Claim processing :</span><span class="value">{{ account.fte.claimProcessing }}</span></p>
+          <p><span class="label">Coding :</span><span class="value">{{ account.fte.coding }}</span></p>
+          <p><span class="label">Payment posting :</span><span class="value">{{ account.fte.paymentPosting }}</span></p>
+          <p><span class="label">Account receivable :</span><span class="value">{{ account.fte.accountReceivable }}</span></p>
+          <p><span class="label">Credentialing :</span><span class="value">{{ account.fte.credentialing }}</span></p>
+          <p><span class="label">Patient calling:</span><span class="value">{{ account.fte.patientCalling }}</span></p>
+         </div>
+      </td>
+      <td style="background-color: #ede76f;" class="cardtd">
+        <div class="card">
+          <p><span class="label">Avg monthly Charges :</span><span class="value">{{ account.financials.avgMonthlyCharges }}</span></p>
+          <p><span class="label">MTD Charges :</span><span class="value">{{ account.financials.mtdCharges }}</span></p>
+          <p><span class="label">Avg Monthly payment:</span><span class="value">{{ account.financials.avgMonthlyPayment }}</span></p>
+          <p><span class="label">MTD payment :</span><span class="value">{{ account.financials.mtdPayment }}</span></p>
+          <p><span class="label">Ins AR :</span><span class="value">{{ account.financials.insAR }}</span></p>
+          <p><span class="label">Ins AR >90 :</span><span class="value">{{ account.financials.insARGreaterThan90 }}</span></p>
+          <p><span class="label">Parient AR :</span><span class="value">{{ account.financials.patientAR }}</span></p>
+          <p><span class="label">Parient AR >90:</span><span class="value">{{ account.financials.patientARGreaterThan90 }}</span></p>
+        </div>
+      </td>      
+      </tr>
+    </table>
+  }
+}
+</div>
+</div>

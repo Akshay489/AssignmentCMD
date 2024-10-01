@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    background-color: rgb(198, 205, 218);
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: rgb(249, 247, 247);
+    color: rgb(53, 108, 246);
+    padding: 2px 0;
+    text-align: left;
+    padding-left: 20px;
+    z-index: 1000; /* Ensures the header stays on top */
+  }
